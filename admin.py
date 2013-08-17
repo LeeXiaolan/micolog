@@ -473,7 +473,7 @@ class admin_entry(BaseRequestHandler):
 				else:
 					smsg=_('Saved ok.')
 				   
-				vals.update({'action':'edit','result':True,'msg':smsg%{'link':str(entry.link)},'entry':entry})
+				vals.update({'action':'edit','result':True,'msg':smsg%{'link':str(urlencode(entry.link))},'entry':entry})
 				self.render2('views/admin/entry.html',vals)
 			elif action=='edit':
 				try:
@@ -508,7 +508,7 @@ class admin_entry(BaseRequestHandler):
 						smsg=_('Saved ok. <a href="/%(link)s" target="_blank">View it now!</a>')
 					else:
 						smsg=_('Saved ok.')
-					vals.update({'result':True,'msg':smsg%{'link':str(entry.link)},'entry':entry})
+					vals.update({'result':True,'msg':smsg%{'link':str(urlencode(entry.link))},'entry':entry})
 					self.render2('views/admin/entry.html',vals)
 
 				except:
