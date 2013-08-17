@@ -201,7 +201,6 @@ class SinglePost(BasePublicPage):
 		if postid:
 			entries = Entry.all().filter("published =", True).filter('post_id =', postid).fetch(1)
 		else:
-			slug=urldecode(slug)
 			entries = Entry.all().filter("published =", True).filter('link =', slug).fetch(1)
 		if not entries or len(entries) == 0:
 			return self.error(404)

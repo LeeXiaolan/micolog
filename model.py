@@ -575,7 +575,9 @@ class Entry(BaseModel):
 
 
 			vals={'year':self.date.year,'month':str(self.date.month).zfill(2),'day':self.date.day,
-				'postname':self.postname,'post_id':self.post_id}
+				'postname': __import__('base').urlencode(self.postname),
+				'post_id': self.post_id,
+			}
 
 
 			if self.entrytype=='page':
