@@ -274,7 +274,7 @@ class SinglePost(BasePublicPage):
 		if not g_blog.allow_trackback:
 			self.response.out.write(self.error % "Trackback denied.")
 			return
-		self.response.headers['Content-Type'] = "text/xml"
+		self.response.headers['Content-Type'] = "text/xml; charset=UTF-8"
 		if postid:
 			entries = Entry.all().filter("published =", True).filter('post_id =', postid).fetch(1)
 		else:
@@ -394,7 +394,7 @@ class FeedHandler(BaseRequestHandler):
 			last_updated = last_updated.strftime("%Y-%m-%dT%H:%M:%SZ")
 		for e in entries:
 			e.formatted_date = e.date.strftime("%Y-%m-%dT%H:%M:%SZ")
-		self.response.headers['Content-Type'] = 'application/atom+xml'
+		self.response.headers['Content-Type'] = 'application/atom+xml; charset=UTF-8'
 		self.render2('views/atom.xml',{'entries':entries,'last_updated':last_updated})
 
 class CommentsFeedHandler(BaseRequestHandler):
@@ -406,7 +406,7 @@ class CommentsFeedHandler(BaseRequestHandler):
 			last_updated = last_updated.strftime("%Y-%m-%dT%H:%M:%SZ")
 		for e in comments:
 			e.formatted_date = e.date.strftime("%Y-%m-%dT%H:%M:%SZ")
-		self.response.headers['Content-Type'] = 'application/atom+xml'
+		self.response.headers['Content-Type'] = 'application/atom+xml; charset=UTF-8'
 		self.render2('views/comments.xml',{'comments':comments,'last_updated':last_updated})
 
 class SitemapHandler(BaseRequestHandler):
